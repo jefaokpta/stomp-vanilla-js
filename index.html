@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Register WS with stomp</title>
+</head>
+<body>
+    <h1>WS STOMP VANILLA JS</h1>
+    <script src="js/stomp.min.js"></script>
+
+    <script>
+        const url = 'ws://localhost:8089/stomp-endpoint'
+        const stompClient = Stomp.client(url)
+        stompClient.connect({}, function(frame) {
+            console.log('Connected: ' + frame);
+            stompClient.subscribe('/topic/greetings', function(greeting){
+                console.log(greeting);
+            });
+        });
+
+        function sendName() {
+            stompClient.send("/app/hello", {}, JSON.stringify({'name': 'test'}));
+        }
+    </script>
+</body>
+</html>
