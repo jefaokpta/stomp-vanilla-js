@@ -11,7 +11,7 @@
     <script>
         const url = 'ws://localhost:8089/stomp-endpoint'
         const stompClient = Stomp.client(url)
-        stompClient.connect({}, function(frame) {
+        stompClient.connect({}, (frame) => {
             console.log('Connected: ' + frame);
             stompClient.subscribe('/user/100023/register', (info) => {
                 console.log(JSON.parse(info.body));
