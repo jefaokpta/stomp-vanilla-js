@@ -13,13 +13,16 @@
         const stompClient = Stomp.client(url)
         stompClient.connect({}, function(frame) {
             console.log('Connected: ' + frame);
-            stompClient.subscribe('/topic/greetings', function(greeting){
-                console.log(greeting);
+            stompClient.subscribe('/user/100023/register', (info) => {
+                console.log(JSON.parse(info.body));
             });
         });
 
         function sendName() {
-            stompClient.send("/app/hello", {}, JSON.stringify({'name': 'test'}));
+            stompClient.send("/wip/vip-register", {}, JSON.stringify({
+                'action': 'INFO',
+                'controlNumber': 100023
+            }));
         }
     </script>
 </body>
