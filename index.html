@@ -9,8 +9,8 @@
     <script src="js/stomp.min.js"></script>
 
     <script>
-        const url = 'ws://localhost:8089/stomp-endpoint'
-        const stompClient = Stomp.client(url)
+        const url = 'ws://localhost:8089'
+        const stompClient = Stomp.client(url + '/stomp-endpoint')
         stompClient.connect({}, (frame) => {
             console.log('Connected: ' + frame);
             stompClient.subscribe('/user/100023/register', (info) => {
