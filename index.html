@@ -18,10 +18,44 @@
             });
         });
 
-        function sendName() {
+        function info(controlNumber) {
             stompClient.send("/wip/vip-register", {}, JSON.stringify({
                 'action': 'INFO',
-                'controlNumber': 100023
+                'controlNumber': controlNumber
+            }));
+        }
+        function register(controlNumber) {
+            stompClient.send("/wip/vip-register", {}, JSON.stringify({
+                'action': 'REGISTER',
+                'controlNumber': controlNumber
+            }));
+        }
+
+        function stop(controlNumber) {
+            stompClient.send("/wip/vip-register", {}, JSON.stringify({
+                'action': 'STOP',
+                'controlNumber': controlNumber
+            }));
+        }
+
+        function start(controlNumber) {
+            stompClient.send("/wip/vip-register", {}, JSON.stringify({
+                'action': 'START',
+                'controlNumber': controlNumber
+            }));
+        }
+
+        function destroy(controlNumber) {
+            stompClient.send("/wip/vip-register", {}, JSON.stringify({
+                'action': 'DESTROY',
+                'controlNumber': controlNumber
+            }));
+        }
+
+        function destroyAuth(controlNumber) {
+            stompClient.send("/wip/vip-register", {}, JSON.stringify({
+                'action': 'DESTROY_AUTH',
+                'controlNumber': controlNumber
             }));
         }
     </script>
