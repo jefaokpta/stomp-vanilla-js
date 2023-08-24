@@ -11,22 +11,18 @@
     <script>
         const url = 'ws://localhost:8089'
         const stompClient = Stomp.client(url + '/stomp-endpoint')
+
         stompClient.connect({}, (frame) => {
             console.log('Connected: ' + frame);
             stompClient.subscribe('/user/100023/register', (info) => {
                 console.log(JSON.parse(info.body));
             });
+            info(100023);
         });
 
         function info(controlNumber) {
             stompClient.send("/wip/vip-register", {}, JSON.stringify({
                 'action': 'INFO',
-                'controlNumber': controlNumber
-            }));
-        }
-        function register(controlNumber) {
-            stompClient.send("/wip/vip-register", {}, JSON.stringify({
-                'action': 'REGISTER',
                 'controlNumber': controlNumber
             }));
         }
@@ -48,13 +44,6 @@
         function destroy(controlNumber) {
             stompClient.send("/wip/vip-register", {}, JSON.stringify({
                 'action': 'DESTROY',
-                'controlNumber': controlNumber
-            }));
-        }
-
-        function destroyAuth(controlNumber) {
-            stompClient.send("/wip/vip-register", {}, JSON.stringify({
-                'action': 'DESTROY_AUTH',
                 'controlNumber': controlNumber
             }));
         }
